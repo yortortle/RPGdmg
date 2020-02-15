@@ -1,38 +1,69 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "functions.h"
 using namespace std;
 
 class Ally
 {
 public:
-	virtual void attack()
+	Ally()
 	{
-
+		Health = 0.f;
+		Defense = 0.f;
+		AttackPower = 0.f;
+		cout << "virtual function constructor" << endl;
 	}
+	//virtual void attack() = 0;
+	void GetStats();
+	float GetHealth();
+	float GetDefense();
+	float GetAttackPower();
 
-	virtual void heal()
-	{
-
-	}
 protected:
+	void SetStats(float health, float defense, float attackpower);
 private:
-
+	float Health;
+	float Defense;
+	float AttackPower;
 };
 
-class Enemy
+class Human : public Ally
 {
 public:
-	virtual void Defend() = 0;
-	void setHealth(int x);
-	int getHealth();
-
-	void setDefense(int x);
-	int getDefense();
-protected:
-private:
-	int Health = 0;
-	int Defense = 0;
+	Human()
+	{
+		SetStats(35.f, 50.f, 100.f);
+		cout << "You have chosen to be a human, a well balanced class" << endl;
+	}
 };
 
+class HighElf : public Ally
+{
+public:
+	HighElf()
+	{
+		SetStats(50.f, 30.f, 85.f);
+		cout << "You have chosen to be a high elf, a well balanced class" << endl;
+	}
+};
+
+class Dwarf : public Ally
+{
+public:
+	Dwarf()
+	{
+		SetStats(70.f, 50.f, 50.f);
+		cout << "You have chosen to be a dwarf, a more defensive class" << endl;
+	}
+};
+
+class Rogue : public Ally
+{
+public:
+	Rogue()
+	{
+		SetStats(70.f, 50.f, 50.f);
+		cout << "You have chosen to be a dwarf, a more aggressive class" << endl;
+		GetStats();
+	}
+};
