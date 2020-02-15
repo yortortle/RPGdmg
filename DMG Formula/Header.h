@@ -19,6 +19,11 @@ public:
 	float GetDefense();
 	float GetAttackPower();
 
+	void SetHealth(float x);
+	void SetDefense(float x);
+	void SetAttackPower(float x);
+
+
 protected:
 	void SetStats(float health, float defense, float attackpower);
 private:

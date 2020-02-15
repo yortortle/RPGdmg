@@ -23,28 +23,20 @@ void BeginPlay()
 	cout << "please select your class" << endl;
 	Rogue rogue;
 
+	Orc orc;
+	orc.GetStats();
+
+	Ally* a1 = &rogue;
+	a1->GetStats();
+	a1->SetAttackPower(30.2);
+	a1->GetStats();
+
+	Ally* e1 = &orc;
+
+	Battle(a1, e1);
 
 }
 
-void Enemy::setHealth(int x)
-{
-	Health = x;
-}
-
-void Enemy::setDefense(int x)
-{
-	Defense = x;
-}
-
-int Enemy::getDefense()
-{
-	return Defense;
-}
-
-int Enemy::getHealth()
-{
-	return Health;
-}
 
 void Ally::SetStats(float attack, float health, float defense)
 {
@@ -72,3 +64,19 @@ float Ally::GetDefense()
 {
 	return Defense;
 }
+
+void Ally::SetAttackPower(float x)
+{
+	AttackPower += x;
+}
+
+void Ally::SetDefense(float x)
+{
+	Defense += x;
+}
+
+void Ally::SetHealth(float x)
+{
+	Defense += x;
+}
+

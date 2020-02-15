@@ -5,7 +5,7 @@ using namespace std;
 
 void BeginPlay();
 
-void Battle(Enemy* &n, Ally &x)
+void Battle(Ally* &human, Ally* &monster)
 {
-	
+	cout << "test " << human->GetAttackPower() << " space " << &monster << endl;
 }
