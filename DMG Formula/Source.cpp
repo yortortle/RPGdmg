@@ -5,7 +5,6 @@
 #include "Header.h"
 #include "Enemy.h"
 #include "functions.h"
-
 using namespace std;
 
 int main()
@@ -14,6 +13,10 @@ int main()
 	//practice overriding, overloading, passing in pointers to functions, general inheritence and encapsulation skills.
 	//virtual functions / abstract classes
 	//using pointers to parent classes in game for efficient memory storage
+	//exception handling
+
+	srand(time(0));
+
 	BeginPlay();
 }
 
@@ -21,20 +24,49 @@ void BeginPlay()
 {
 	cout << "game has begun" << endl;
 	cout << "please select your class" << endl;
-	Rogue rogue;
 
-	Orc orc;
-	orc.GetStats();
+	Human hero;
+	Ally* a1 = &hero;
+	Ally* e2;
 
-	Ally* a1 = &rogue;
-	a1->GetStats();
-	a1->SetAttackPower(30.2);
-	a1->GetStats();
+	while (a1->GetHealth() >= 0)
+	{
+		int num = rand() % 5;
+		cout << num << " random number" << endl;
 
-	Ally* e1 = &orc;
+		if (num == 0)
+		{
+			Orc enemy;
+			e2 = &enemy;
+		}
+		else if (num == 1)
+		{
+			Bat enemy;
+			e2 = &enemy;
+		}
+		else if (num == 2)
+		{
+			Vampire enemy;
+			e2 = &enemy;
 
-	Battle(a1, e1);
+		}
+		else if (num == 3)
+		{
+			Giant enemy;
+			e2 = &enemy;
+		}
+		else if (num == 4)
+		{
+			Mage enemy;
+			e2 = &enemy;
+		}
+		//Ally* e1 = &enemy;
+		cout << "infinite" << endl;
+		Battle(a1, e2);
+	}
 
+	//Battle(a1, e1);
+	//Battle(a1, e1);
 }
 
 
@@ -77,6 +109,16 @@ void Ally::SetDefense(float x)
 
 void Ally::SetHealth(float x)
 {
-	Defense += x;
+	Health += x;
+}
+
+void Ally::SetName(string x)
+{
+	name = x;
+}
+
+string Ally::GetName()
+{
+	return name;
 }
 
