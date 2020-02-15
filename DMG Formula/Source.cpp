@@ -23,7 +23,11 @@ int main()
 void BeginPlay()
 {
 	cout << "game has begun" << endl;
-	cout << "please select your class" << endl;
+	cout << "please select your class between: " << endl;
+	
+	string ChosenClass;
+	cin >> ChosenClass;
+	cout << ChosenClass << endl;
 
 	Human hero;
 	Ally* a1 = &hero;
@@ -32,7 +36,6 @@ void BeginPlay()
 	while (a1->GetHealth() >= 0)
 	{
 		int num = rand() % 5;
-		cout << num << " random number" << endl;
 
 		if (num == 0)
 		{
@@ -60,13 +63,9 @@ void BeginPlay()
 			Mage enemy;
 			e2 = &enemy;
 		}
-		//Ally* e1 = &enemy;
 		cout << "infinite" << endl;
 		Battle(a1, e2);
 	}
-
-	//Battle(a1, e1);
-	//Battle(a1, e1);
 }
 
 
