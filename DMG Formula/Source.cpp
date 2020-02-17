@@ -22,40 +22,41 @@ int main()
 void BeginPlay()
 {
 	cout << "game has begun" << endl;
-	cout << "please select your class between human, high elf, dwarf, or rogue" << endl;
+	cout << "please select your class between human, elf, dwarf, or rogue" << endl;
 	
 	string ChosenClass;
 	cin >> ChosenClass;
 
-
+	
 	Ally* a1;
 
 	if (ChosenClass == "human")
 	{
-		cout << "human" << endl;
 		Human hero;
 		a1 = &hero;
 		GameLoop(a1);
 	}
-	else if(ChosenClass == "high elf")
+	else if(ChosenClass == "elf")
 	{
-		cout << "elf" << endl;
 		HighElf hero;
 		a1 = &hero;
 		GameLoop(a1);
 	}
 	else if (ChosenClass == "dwarf")
 	{
-		cout << "dwarf" << endl;
+		Dwarf hero;
+		a1 = &hero;
+		GameLoop(a1);
 	}
 	else if (ChosenClass == "rogue")
 	{
-		cout << "rogue" << endl;
 		Rogue hero;
+		a1 = &hero;
+		GameLoop(a1);
 	}
 	else
 	{
-		cout << "invalid" << endl;
+		cout << "invalid, start over with a valid class name" << endl;
 	}
 }
 
