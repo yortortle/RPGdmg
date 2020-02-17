@@ -12,27 +12,56 @@ int main()
 	//A project where I build a console based RPG attribute game to practice fundamental C++ skills
 	//practice overriding, overloading, passing in pointers to functions, general inheritence and encapsulation skills.
 	//virtual functions / abstract classes
-	//using pointers to parent classes in game for efficient memory storage
 	//exception handling
+	//practice refactoring
 
 	srand(time(0));
-
 	BeginPlay();
 }
 
 void BeginPlay()
 {
 	cout << "game has begun" << endl;
-	cout << "please select your class between: " << endl;
+	cout << "please select your class between human, high elf, dwarf, or rogue" << endl;
 	
 	string ChosenClass;
 	cin >> ChosenClass;
-	cout << ChosenClass << endl;
 
-	Human hero;
-	Ally* a1 = &hero;
+
+	Ally* a1;
+
+	if (ChosenClass == "human")
+	{
+		cout << "human" << endl;
+		Human hero;
+		a1 = &hero;
+		GameLoop(a1);
+	}
+	else if(ChosenClass == "high elf")
+	{
+		cout << "elf" << endl;
+		HighElf hero;
+		a1 = &hero;
+		GameLoop(a1);
+	}
+	else if (ChosenClass == "dwarf")
+	{
+		cout << "dwarf" << endl;
+	}
+	else if (ChosenClass == "rogue")
+	{
+		cout << "rogue" << endl;
+		Rogue hero;
+	}
+	else
+	{
+		cout << "invalid" << endl;
+	}
+}
+
+void GameLoop(Ally* a1)
+{
 	Ally* e2;
-
 	while (a1->GetHealth() >= 0)
 	{
 		int num = rand() % 5;
@@ -41,34 +70,34 @@ void BeginPlay()
 		{
 			Orc enemy;
 			e2 = &enemy;
+			Battle(a1, e2);
 		}
 		else if (num == 1)
 		{
 			Bat enemy;
 			e2 = &enemy;
+			Battle(a1, e2);
 		}
 		else if (num == 2)
 		{
 			Vampire enemy;
 			e2 = &enemy;
-
+			Battle(a1, e2);
 		}
 		else if (num == 3)
 		{
 			Giant enemy;
 			e2 = &enemy;
+			Battle(a1, e2);
 		}
 		else if (num == 4)
 		{
 			Mage enemy;
 			e2 = &enemy;
+			Battle(a1, e2);
 		}
-		cout << "infinite" << endl;
-		Battle(a1, e2);
 	}
 }
-
-
 void Ally::SetStats(float attack, float health, float defense)
 {
 	AttackPower = attack;

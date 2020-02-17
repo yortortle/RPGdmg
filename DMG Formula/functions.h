@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
 #include <string>
+
 using namespace std;
 
+void GameLoop(Ally* a1);
 void BeginPlay();
 
 void Battle(Ally* &human, Ally* &monster)
