@@ -2,26 +2,27 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
-#include "Header.h"
+#include "Ally.h"
 #include "Enemy.h"
 #include "functions.h"
 using namespace std;
 
+//A project where I build a console based RPG attribute game to practice fundamental C++ skills. Goals are:
+//implement function overriding
+//implement pointers as parametrs in functions and gain understanding of their uses
+//practice inheritence skills with base and children classes
+//virtual functions
+//practice refactoring
+
+
 int main()
 {
-	//A project where I build a console based RPG attribute game to practice fundamental C++ skills
-	//practice overriding, overloading, passing in pointers to functions, general inheritence and encapsulation skills.
-	//virtual functions / abstract classes
-	//exception handling
-	//practice refactoring
-
 	srand(time(0));
 	BeginPlay();
 }
 
 void BeginPlay()
 {
-	cout << "game has begun" << endl;
 	cout << "please select your class between human, elf, dwarf, or rogue" << endl;
 	
 	string ChosenClass;
@@ -33,10 +34,14 @@ void BeginPlay()
 
 void ClassSelection(string ChosenClass)
 {
-	Ally* a1;
+	//make a pointer to base class Ally which we will set a value for in the conditionals statements below.
+	Ally* a1 = new Ally;
+
 	if (ChosenClass == "human")
 	{
 		Human hero;
+		//We declare the pointer to be a reference to the derived class Human named hero.
+		//I'm not wondering if I could have avoided making the pointer to Base class Ally and instead just passed in a reference to hero in the gameloop function
 		a1 = &hero;
 		GameLoop(a1);
 	}
@@ -60,52 +65,60 @@ void ClassSelection(string ChosenClass)
 	}
 	else
 	{
-		cout << "invalid, start over with a valid class name" << endl;
+		cout << endl << "invalid entry, start over with a valid class name" << endl;
+		BeginPlay();
 	}
 }
 
 void GameLoop(Ally* a1)
 {
-	Ally* e2;
+	//Declaring a pointer named monster of type ally to use as the enemy
+	Ally* Monster = new Ally;
 	while (a1->GetHealth() >= 0)
 	{
+		//a loop that runs until you die, generates random number and decides monster encounter based on that number.
 		int num = rand() % 5;
 
 		if (num == 0)
 		{
+			//still unsure if I'm using pointers / memory right here. Wondering if it would be more efficient to just pass in the refrence to enemy directly into the function and how that differs to using the pointer. 
+			//Will continue practicing and doing research.
 			Orc enemy;
-			e2 = &enemy;
-			Battle(a1, e2);
+			Monster = &enemy;
+			Battle(a1, Monster);
 		}
 		else if (num == 1)
 		{
 			Bat enemy;
-			e2 = &enemy;
-			Battle(a1, e2);
+			Monster = &enemy;
+			Battle(a1, Monster);
 		}
 		else if (num == 2)
 		{
 			Vampire enemy;
-			e2 = &enemy;
-			Battle(a1, e2);
+			Monster = &enemy;
+			Battle(a1, Monster);
 		}
 		else if (num == 3)
 		{
 			Giant enemy;
-			e2 = &enemy;
-			Battle(a1, e2);
+			Monster = &enemy;
+			Battle(a1, Monster);
 		}
 		else if (num == 4)
 		{
 			Mage enemy;
-			e2 = &enemy;
-			Battle(a1, e2);
+			Monster = &enemy;
+			Battle(a1, Monster);
 		}
 	}
 }
 
-void Battle(Ally*& human, Ally*& monster)
+void Battle(Ally* &human, Ally* &monster)
 {
+	//Battle function which takes in a pointer to base class ally for the main character, and another pointer to base class Ally for the monster. I use pointers as arguments in these functions so the objects are directly 
+	//altered rather than just being copied and then not changing when it returns from the battle function.
+
 	string answer;
 	cout << endl;
 	cout << "You have slain " << counter << " monsters thus far!" << endl;

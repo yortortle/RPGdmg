@@ -13,7 +13,7 @@ public:
 		AttackPower = 0.f;
 		name = "";
 	}
-	//virtual void attack() = 0;
+
 	void GetStats();
 	float GetHealth();
 	float GetDefense();

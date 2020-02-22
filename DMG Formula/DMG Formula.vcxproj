@@ -143,7 +143,7 @@
   <ItemGroup>
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="functions.h" />
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="Ally.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
